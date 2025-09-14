@@ -6,8 +6,8 @@ import Button from "./ui/Button";
 const navigationItems = [
   { label: "Dashboard", path: "/main-dashboard", icon: "LayoutDashboard" },
   { label: "About Us", path: "/about-us", icon: "Building2" },
-  { label: "Pricing", path: "/pricing", icon: "Receipt" },
   { label: "Features", path: "/features", icon: "TrendingUp" },
+  { label: "Pricing", path: "/pricing", icon: "Receipt" },
 ];
 
 function Header() {
@@ -35,8 +35,22 @@ function Header() {
               <h1 className="text-2xl font-bold text-gradient">Recofy</h1>
             </Link>
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <a
+              <div className="ml-10 flex items-center gap-4 space-x-4">
+                {navigationItems.slice(1, 4)?.map((item) => (
+                  <Link
+                    key={item?.path}
+                    to={item?.path}
+                    className={`flex items-center gap-1 hover:text-indigo-600 rounded-md text-sm transition ${
+                      isActiveRoute(item?.path)
+                        ? "text-indigo-600 font-semibold"
+                        : "text-gray-700 font-medium"
+                    }`}
+                  >
+                    {/* <Icon name={item?.icon} size={16} /> */}
+                    <span>{item?.label}</span>
+                  </Link>
+                ))}
+                {/* <a
                   href="/about-us"
                   className="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition"
                 >
@@ -53,7 +67,7 @@ function Header() {
                   className="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition"
                 >
                   Pricing
-                </a>
+                </a> */}
                 <a
                   href="/auth/login"
                   className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition"
